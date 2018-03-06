@@ -24,10 +24,7 @@ class TransfersEntryPoint extends AbstractEntityEntryPoint
         return $this->doCreate('transfers/create', $transfer, function ($transfer) {
             return $this->convertTansferToRequest($transfer);
         }, function (stdClass $response) {
-            //return 
-            $test = $this->createTransferFromResponse($response);
-
-            var_dump($response); die;
+            return $this->createTransferFromResponse($response);
         }, $onBehalfOf);
     }
 
