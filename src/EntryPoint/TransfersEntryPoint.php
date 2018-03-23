@@ -54,17 +54,17 @@ class TransfersEntryPoint extends AbstractEntityEntryPoint
     {
         $transfer = new Transfer();
         $transfer->setShortReference($response->short_reference)
-                ->setSourceAccountId($response->source_account_id)
-                ->setDestinationAccountId($response->destination_account_id)
-                ->setCurrency($response->currency)
-                ->setAmount($response->amount)
-                ->setStatus($response->status)
-                ->setCreatedAt(new DateTime($response->created_at))
-                ->setUpdatedAt(new DateTime($response->updated_at))
-                ->setCompletedAt(new DateTime($response->completed_at))
-                ->setCreatorAccountId($response->creator_account_id)
-                ->setCreatorContactId($response->creator_contact_id)
-                ->setReason($response->reason);
+                 ->setSourceAccountId($response->source_account_id)
+                 ->setDestinationAccountId($response->destination_account_id)
+                 ->setCurrency($response->currency)
+                 ->setAmount($response->amount)
+                 ->setStatus($response->status)
+                 ->setCreatedAt(new DateTime($response->created_at))
+                 ->setUpdatedAt(new DateTime($response->updated_at))
+                 ->setCompletedAt(new DateTime($response->completed_at))
+                 ->setCreatorAccountId($response->creator_account_id)
+                 ->setCreatorContactId($response->creator_contact_id)
+                 ->setReason($response->reason);
         $this->setIdProperty($transfer, $response->id);
 
         return $transfer;

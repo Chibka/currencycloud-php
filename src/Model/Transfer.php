@@ -279,7 +279,7 @@ class Transfer implements EntityInterface
      */
     public function getCreatorContactId()
     {
-        return $this->status;
+        return $this->creatorContactId;
     }
 
     /**
@@ -289,7 +289,7 @@ class Transfer implements EntityInterface
      */
     public function setCreatorContactId($creatorContactId)
     {
-        $this->status = (null === $creatorContactId) ? null : (string) $creatorContactId;
+        $this->creatorContactId = (null === $creatorContactId) ? null : (string) $creatorContactId;
         return $this;
     } 
 
