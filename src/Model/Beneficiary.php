@@ -787,4 +787,15 @@ class Beneficiary implements EntityInterface
         $this->updatedAt = $updatedAt;
         return $this;
     }
+
+    /**
+     * @param string $prop
+     *
+     * @return $this
+     */
+    public function unset_prop($prop)
+    {
+        unset($this->$prop);
+        return $this;
+    }
 }
