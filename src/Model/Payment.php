@@ -303,7 +303,7 @@ class Payment implements EntityInterface
      *
      * @return $this
      */
-    public function setPaymentDate(DateTime $paymentDate)
+    public function setPaymentDate($paymentDate)
     {
         $this->paymentDate = $paymentDate;
         return $this;
