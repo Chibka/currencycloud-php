@@ -68,14 +68,16 @@ class BeneficiariesEntryPoint extends AbstractEntityEntryPoint
      */
     public function update(Beneficiary $beneficiary, $onBehalfOf = null)
     {
+        $beneficiary->setCreatorContactId($onBehalfOf);
+        // var_dump($beneficiary); die;
         return $this->doUpdate(sprintf(
             'beneficiaries/%s',
             $beneficiary->getId()
-        ), $beneficiary, function ($entity, $onBehalfOf) {
-            return $this->convertBeneficiaryToRequest($entity, $onBehalfOf, false, true);
+        ), $beneficiary, function ($beneficiary, $onBehalfOf) {
+            return $this->convertBeneficiaryToRequest($beneficiary, false, true, $onBehalfOf);
         }, function ($response) {
             return $this->createBeneficiaryFromResponse($response);
-        });
+        }, $onBehalfOf);
     }
 
     /**
@@ -127,7 +129,7 @@ class BeneficiariesEntryPoint extends AbstractEntityEntryPoint
      *
      * @return array
      */
-    protected function convertBeneficiaryToRequest(Beneficiary $beneficiary, $convertForValidate = false, $convertForUpdate = false)
+    protected function convertBeneficiaryToRequest(Beneficiary $beneficiary, $convertForValidate = false, $convertForUpdate = false, $onBehalfOf = null)
 	{
         $isDefaultBeneficiary = $beneficiary->isDefaultBeneficiary();
         $common = [
@@ -173,7 +175,9 @@ class BeneficiariesEntryPoint extends AbstractEntityEntryPoint
         ];
 
         if ($convertForUpdate) {
-            return $common;
+            return $common += [
+                'on_behalf_of' => $onBehalfOf
+            ];
         }
 
         return $common + [

@@ -7,7 +7,7 @@ use CurrencyCloud\EventDispatcher\Event\ClientHttpErrorEvent;
 use Exception;
 use GuzzleHttp\Exception\GuzzleException;
 use stdClass;
-use Symfony\Component\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\EventDispatcher\EventDispatcher;
 
 class Client
 {
@@ -22,16 +22,16 @@ class Client
      */
     protected $session;
     /**
-     * @var EventDispatcherInterface
+     * @var EventDispatcher
      */
     private $eventDispatcher;
 
     /**
      * @param Session $session
      * @param \GuzzleHttp\Client $client
-     * @param EventDispatcherInterface $eventDispatcher
+     * @param EventDispatcher $eventDispatcher
      */
-    public function __construct(Session $session, \GuzzleHttp\Client $client, EventDispatcherInterface $eventDispatcher)
+    public function __construct(Session $session, \GuzzleHttp\Client $client, EventDispatcher $eventDispatcher)
     {
         $this->client = $client;
         $this->session = $session;

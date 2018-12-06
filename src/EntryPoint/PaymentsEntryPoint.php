@@ -23,6 +23,7 @@ class PaymentsEntryPoint extends AbstractEntityEntryPoint
      */
     public function create(Payment $payment, Payer $payer = null, $onBehalfOf = null)
     {
+        
         if (null === $payer) {
             $payer = new Payer();
         }
@@ -58,9 +59,10 @@ class PaymentsEntryPoint extends AbstractEntityEntryPoint
             ];
         }
         $paymentDate = $payment->getPaymentDate();
+
         return $common + [
             'reference' => $payment->getReference(),
-            'payment_date' => (null === $paymentDate) ? $paymentDate : $paymentDate->format(DateTime::RFC3339),
+            'payment_date' => (null != $paymentDate) ? $paymentDate : $paymentDate->format(DateTime::RFC3339),
             'payment_type' => $payment->getPaymentType()
         ];
     }
